@@ -49,6 +49,28 @@ $recommendations
 
 ```
 
+```PowerShell
+Output
+
+Id                   : 
+name                 : 
+type                 : Microsoft.SecurityInsights/Recommendations
+properites           : @{recommendationTypeId=Precision_Coverage; state=Active; title=Coverage improvement against AiTM (Adversary in the Middle); description=We 
+                       discovered that you can improve your coverage against AiTM (Adversary in the Middle).; creationTimeUtc=2024-01-14T13:19:38.8747624+00:00; 
+                       lastEvaluatedTimeUtc=2024-05-30T23:42:56.8728235+00:00; lastModifiedTimeUtc=2024-01-14T13:19:38.8747624+00:00; suggestions=System.Object[]; 
+                       additionalProperties=}
+state                : Active
+title                : Coverage improvement against AiTM (Adversary in the Middle)
+description          : We discovered that you can improve your coverage against AiTM (Adversary in the Middle).
+creationTimeUtc      : 2024-01-14T13:19:38.8747624+00:00
+lastEvaluatedTimeUtc : 2024-05-30T23:42:56.8728235+00:00
+lastModifiedTimeUtc  : 2024-01-14T13:19:38.8747624+00:00
+suggestions          : {@{suggestionTypeId=Precision_Coverage_ImproveCoverage; title=Improve coverage; description=Improve your coverage against AiTM (Adversary in 
+                       the Middle) attacks from Low to High.; action=Go to content hub and add 26 new analytic rules. You can also create your own rule to achieve 
+                       the recommended level of coverage.; additionalProperties=}}
+additionalProperties : @{UseCaseId=attackscenario--22b9ed35-6525-40c9-a1d4-a7edefaf0fd9; UseCaseName=AiTM (Adversary in the Middle)}
+```
+
 ## References
 
 - [SOC optimization: unlock the power of precision-driven security management](https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/soc-optimization-unlock-the-power-of-precision-driven-security/ba-p/4130589)
