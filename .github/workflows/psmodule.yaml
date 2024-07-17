@@ -22,7 +22,7 @@ jobs:
       - name: Zip Toolkit
         run: |
           cd PSMDSOCoptimization
-          zip -r ../SentinelTIUploadToolkit.zip ./*
+          zip -r ../PSMDSOCoptimization.zip ./*
 
       - name: Move Artifact to Module Folder
         run: mv PSMDSOCoptimization.zip Module/
