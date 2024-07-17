@@ -49,11 +49,13 @@ $recommendations
 
 ```
 
-```PowerShell
-Output
+Below is an example of the expected output per recommendation
 
-Id                   : 
-name                 : 
+```PowerShell
+$recommendations[0]
+
+Id                   : <intentionlally removed>
+name                 : <intentionlally removed>
 type                 : Microsoft.SecurityInsights/Recommendations
 properites           : @{recommendationTypeId=Precision_Coverage; state=Active; title=Coverage improvement against AiTM (Adversary in the Middle); description=We 
                        discovered that you can improve your coverage against AiTM (Adversary in the Middle).; creationTimeUtc=2024-01-14T13:19:38.8747624+00:00; 
