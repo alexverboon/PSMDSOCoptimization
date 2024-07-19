@@ -13,6 +13,7 @@ The PSMDSOCOptimization **PowerShell Module** includes the following fuctions:
 | Function | Description  |
 | ----------------------- | -------------------------------------------------------------------------------------- |
 | Get-MDSOCRecommendations | Retrieves the SOC Optimization recommendations |
+| Update-MDSOCRecommendation | Updates the State of the recommendation or triggers a reevaluation |
 
 ## Initial Setup and Configuration
 
@@ -52,26 +53,42 @@ $recommendations
 Below is an example of the expected output per recommendation
 
 ```PowerShell
-$recommendations[0]
+$recommendations[5]
 
-Id                   : <intentionlally removed>
-name                 : <intentionlally removed>
+Id                   : <intentionally removed>
+name                 : b86a5814-2b5b-4b2f-95e1-64261ebaa675
+RecommendationId     : b86a5814-2b5b-4b2f-95e1-64261ebaa675
 type                 : Microsoft.SecurityInsights/Recommendations
-properites           : @{recommendationTypeId=Precision_Coverage; state=Active; title=Coverage improvement against AiTM (Adversary in the Middle); description=We 
-                       discovered that you can improve your coverage against AiTM (Adversary in the Middle).; creationTimeUtc=2024-01-14T13:19:38.8747624+00:00; 
-                       lastEvaluatedTimeUtc=2024-05-30T23:42:56.8728235+00:00; lastModifiedTimeUtc=2024-01-14T13:19:38.8747624+00:00; suggestions=System.Object[]; 
-                       additionalProperties=}
-state                : Active
-title                : Coverage improvement against AiTM (Adversary in the Middle)
-description          : We discovered that you can improve your coverage against AiTM (Adversary in the Middle).
-creationTimeUtc      : 2024-01-14T13:19:38.8747624+00:00
-lastEvaluatedTimeUtc : 2024-05-30T23:42:56.8728235+00:00
-lastModifiedTimeUtc  : 2024-01-14T13:19:38.8747624+00:00
-suggestions          : {@{suggestionTypeId=Precision_Coverage_ImproveCoverage; title=Improve coverage; description=Improve your coverage against AiTM (Adversary in 
-                       the Middle) attacks from Low to High.; action=Go to content hub and add 26 new analytic rules. You can also create your own rule to achieve 
-                       the recommended level of coverage.; additionalProperties=}}
-additionalProperties : @{UseCaseId=attackscenario--22b9ed35-6525-40c9-a1d4-a7edefaf0fd9; UseCaseName=AiTM (Adversary in the Middle)}
+properites           : @{recommendationTypeId=Precision_Coverage; state=InProgress; title=Coverage improvement against IaaS Resource Theft; description=We discovered that you can improve 
+                       your coverage against IaaS Resource Theft.; creationTimeUtc=2024-01-14T13:19:39.0613485+00:00; lastEvaluatedTimeUtc=2024-07-19T07:30:35.0632979+00:00; 
+                       lastModifiedTimeUtc=2024-07-19T07:29:38.6163869+00:00; suggestions=System.Object[]; additionalProperties=}
+state                : InProgress
+title                : Coverage improvement against IaaS Resource Theft
+description          : We discovered that you can improve your coverage against IaaS Resource Theft.
+creationTimeUtc      : 2024-01-14T13:19:39.0613485+00:00
+lastEvaluatedTimeUtc : 2024-07-19T07:30:35.0632979+00:00
+lastModifiedTimeUtc  : 2024-07-19T07:29:38.6163869+00:00
+suggestions          : {@{suggestionTypeId=Precision_Coverage_ImproveCoverage; title=Improve coverage; description=Improve your coverage against IaaS Resource Theft attacks from Low to 
+                       High.; action=Go to content hub and add 83 new analytic rules. You can also create your own rule to achieve the recommended level of coverage.; 
+                       additionalProperties=}}
+additionalProperties : @{UseCaseId=attackscenario--7038e587-af8c-4189-8733-1193b5af0607; UseCaseName=IaaS Resource Theft}
 ```
+
+Change the status of a recommendation
+
+```powershell
+$recommendationId = "b86a5814-2b5b-4b2f-95e1-64261ebaa675"
+Update-MDSOCRecommendation -State InProgress  -Id $recommendationId -AppId $AppId -AppSecret $AppSecret -TenantName $TenantName -WorkspaceName $WorkspaceName -ResourceGroupName $ResourceGroupName -SubscriptionId $SubscriptionId
+```
+
+Trigger a reevaluation for the recommendation
+
+```powershell
+$recommendationId = "b86a5814-2b5b-4b2f-95e1-64261ebaa675"
+Update-MDSOCRecommendation -Reevaluation -Id $recommendationId -AppId $AppId -AppSecret $AppSecret -TenantName $TenantName -WorkspaceName $WorkspaceName -ResourceGroupName $ResourceGroupName -SubscriptionId $SubscriptionId
+```
+
+![Update](./Assets/recommendation_update.png)
 
 ## References
 

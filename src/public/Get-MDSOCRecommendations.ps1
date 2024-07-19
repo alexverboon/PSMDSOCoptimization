@@ -98,6 +98,7 @@ try {
         $Object = [PSCustomObject]@{
             Id                      = $recommendation.id
             name                    = $recommendation.name
+            RecommendationId        = $recommendation.name
             type                    = $recommendation.type
             properites              = $recommendation.properties
             state                   = $recommendation.properties.state
