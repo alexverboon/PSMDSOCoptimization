@@ -76,12 +76,16 @@ additionalProperties : @{UseCaseId=attackscenario--7038e587-af8c-4189-8733-1193b
 
 Change the status of a recommendation
 
+Use the **State** parameter with one of the following values: ***Active, InProgress, Dismissed, CompletedByUser, CompletedBySystem***
+
 ```powershell
 $recommendationId = "b86a5814-2b5b-4b2f-95e1-64261ebaa675"
 Update-MDSOCRecommendation -State InProgress  -Id $recommendationId -AppId $AppId -AppSecret $AppSecret -TenantName $TenantName -WorkspaceName $WorkspaceName -ResourceGroupName $ResourceGroupName -SubscriptionId $SubscriptionId
 ```
 
 Trigger a reevaluation for the recommendation
+
+Use the **Reevaluation** parameter.
 
 ```powershell
 $recommendationId = "b86a5814-2b5b-4b2f-95e1-64261ebaa675"

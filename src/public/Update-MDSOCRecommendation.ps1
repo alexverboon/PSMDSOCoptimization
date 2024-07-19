@@ -12,7 +12,7 @@
     Triggers a reevaluation of the recommendation.
 
 .PARAMETER Id
-    The unique Id of the Recommendation
+    The unique Id of the Recommendation. Use Get-MDSOCRecommendations to get the unique recommendation Id for a recommendatino.
 
 .PARAMETER AppId
     The Entra application ID.
@@ -114,36 +114,35 @@ function Update-MDSOCRecommendation {
             $Header = @{
                 Authorization = "$($TokenRequest.token_type) $($TokenRequest.access_token)"
             }
-            
-           
+
             if ($State) {
                 $Body = @{
                     Properties = @{
                         State = $State
                     }
                 } | ConvertTo-Json
+
                 $Uri = "https://management.azure.com/subscriptions/$SubscriptionId/resourceGroups/$ResourceGroupName/providers/Microsoft.OperationalInsights/workspaces/$WorkspaceName/providers/Microsoft.SecurityInsights/recommendations/$id" + "?api-version=2024-01-01-preview"
-                            try {
-             $Results = Invoke-RestMethod -Uri $Uri -Headers $Header -Body $Body -Method Patch -ContentType "application/json" -ErrorAction Stop
-            }
-            catch {
-                Write-Error "Failed to update recommendation: $_"
-                return
-            }
+                try {
+                $Results = Invoke-RestMethod -Uri $Uri -Headers $Header -Body $Body -Method Patch -ContentType "application/json" -ErrorAction Stop
+                }
+                catch {
+                    Write-Error "Failed to update recommendation: $_"
+                    return
+                }
 
             } elseif ($Reevaluation) {
-            $Uri = "https://management.azure.com/subscriptions/$SubscriptionId/resourceGroups/$ResourceGroupName/providers/Microsoft.OperationalInsights/workspaces/$WorkspaceName/providers/Microsoft.SecurityInsights/recommendations/$id/triggerEvaluation" + "?api-version=2024-01-01-preview"
-            Try{
-            $Results = Invoke-WebRequest -Headers $Header -Uri $Uri -Method Post  -ContentType "application/json"
-            }
-                        catch {
-                Write-Error "Failed to update recommendation: $_"
-                return
-            }
+                $Uri = "https://management.azure.com/subscriptions/$SubscriptionId/resourceGroups/$ResourceGroupName/providers/Microsoft.OperationalInsights/workspaces/$WorkspaceName/providers/Microsoft.SecurityInsights/recommendations/$id/triggerEvaluation" + "?api-version=2024-01-01-preview"
+                Try{
+                $Results = Invoke-WebRequest -Headers $Header -Uri $Uri -Method Post  -ContentType "application/json"
+                }
+                            catch {
+                    Write-Error "Failed to update recommendation: $_"
+                    return
+                }
         }
 
-
-        }
+    }
         catch {
             Write-Error "An unexpected error occurred: $_"
         }
